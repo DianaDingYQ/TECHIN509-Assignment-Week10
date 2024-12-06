@@ -1,0 +1,24 @@
+Tic-Tac-Toe Game Record
+=======================
+Player X -> Row: 1, Column: 2
+Player O -> Row: 1, Column: 1
+Player X -> Row: 0, Column: 0
+Player O -> Row: 0, Column: 1
+Player X -> Row: 1, Column: 0
+Player O -> Row: 2, Column: 1
+
+Winner: O
+
+Tic-Tac-Toe Game Record
+=======================
+Player X -> Row: 1, Column: 1
+Player O -> Row: 0, Column: 1
+Player X -> Row: 2, Column: 1
+Player O -> Row: 2, Column: 0
+Player X -> Row: 2, Column: 2
+Player O -> Row: 1, Column: 0
+Player X -> Row: 1, Column: 2
+Player O -> Row: 0, Column: 0
+
+Winner: O
+

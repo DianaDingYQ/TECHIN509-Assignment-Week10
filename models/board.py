@@ -58,18 +58,53 @@ class Board:
 
 
 if __name__ == "__main__":
-    board = Board()
-    board.grid = [
-        ["X", "O", "X"],
-        [" ", "X", "O"],
-        ["O", " ", " "]
-    ]
-    board.draw_board()
-    print("Winner:", board.check_winner())
-    print("Is Full:", board.is_full())
+    while True:
+        board = Board()
+        current_player = "X"
+        moves = []  # 保存每一步的操作记录
 
-    board.update_board(1, 0, "X")
-    board.draw_board()
-    print("Winner:", board.check_winner())
-    print("Is Full:", board.is_full())
+        print("Welcome to Tic-Tac-Toe!")
+        while not board.is_full():
+            board.draw_board()
+            print(f"Player {current_player}'s turn.")
+            try:
+                row = int(input("Enter row (0, 1, 2): "))
+                col = int(input("Enter column (0, 1, 2): "))
+            except ValueError:
+                print("Invalid input. Please enter numbers between 0 and 2.")
+                continue
 
+            if 0 <= row < 3 and 0 <= col < 3:
+                if board.update_board(row, col, current_player):
+                    moves.append((current_player, row, col))  # 记录玩家的操作
+                    winner = board.check_winner()
+                    if winner:
+                        board.draw_board()
+                        print(f"Player {winner} wins!")
+                        break
+                    current_player = "O" if current_player == "X" else "X"
+                else:
+                    print("Cell is already occupied. Try again.")
+            else:
+                print("Invalid input. Please enter numbers between 0 and 2.")
+
+        else:
+            board.draw_board()
+            print("It's a draw!")
+
+        
+        with open("game_record.txt", "a") as f:
+            f.write("Tic-Tac-Toe Game Record\n")
+            f.write("=======================\n")
+            for move in moves:
+                f.write(f"Player {move[0]} -> Row: {move[1]}, Column: {move[2]}\n")
+            if winner:
+                f.write(f"\nWinner: {winner}\n\n")
+            else:
+                f.write("\nResult: Draw\n\n")
+
+        
+        replay = input("Do you want to play another game? (yes/no): ").strip().lower()
+        if replay != "yes":
+            print("Thank you for playing!")
+            break
